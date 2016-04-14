@@ -3,4 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="btn_intent">intent 学习</string>
+    <string name="title_activity_intent">IntentActivity</string>
+    <string name="btn_dial">拨打电话</string>
+    <string name="btn_local">打开地图</string>
+    <string name="btn_web">浏览网页</string>
+    <string name="btn_email">发送邮件</string>
+    <string name="btn_choose">自定义选择</string>
 </resources>

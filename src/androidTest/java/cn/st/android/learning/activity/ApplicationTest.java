@@ -1,4 +1,4 @@
-package cn.st.android.learing;
+package cn.st.android.learning.activity;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
