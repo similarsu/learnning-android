@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button btnIntentResult;
 
+    private Button btnGoSimpleCamera;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnIntentImplicit.setOnClickListener(this);
         btnIntentResult= (Button) findViewById(R.id.btn_intent_result);
         btnIntentResult.setOnClickListener(this);
+        btnGoSimpleCamera= (Button) findViewById(R.id.btn_go_simple_camera);
+        btnGoSimpleCamera.setOnClickListener(this);
     }
 
     @Override
@@ -57,6 +61,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_intent_result:{
                 Intent intent=new Intent(this,IntentResultActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case R.id.btn_go_simple_camera:{
+                Intent intent=new Intent(this,SimpleCameraActivity.class);
                 startActivity(intent);
                 break;
             }
