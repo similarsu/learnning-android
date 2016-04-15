@@ -10,14 +10,18 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button btnIntent;
+    private Button btnIntentImplicit;
+
+    private Button btnIntentResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnIntent= (Button) findViewById(R.id.btn_intent);
-        btnIntent.setOnClickListener(this);
+        btnIntentImplicit= (Button) findViewById(R.id.btn_intent_implicit);
+        btnIntentImplicit.setOnClickListener(this);
+        btnIntentResult= (Button) findViewById(R.id.btn_intent_result);
+        btnIntentResult.setOnClickListener(this);
     }
 
     @Override
@@ -45,8 +49,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btn_intent:{
+            case R.id.btn_intent_implicit:{
                 Intent intent=new Intent(this,ImplicitIntentActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case R.id.btn_intent_result:{
+                Intent intent=new Intent(this,IntentResultActivity.class);
                 startActivity(intent);
                 break;
             }

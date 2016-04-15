@@ -2,11 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     >
     <Button
-        android:id="@+id/btn_intent"
-        android:text="@string/btn_intent"
+        android:id="@+id/btn_intent_implicit"
+        android:text="@string/btn_intent_implicit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_intent_result"
+        android:text="@string/btn_intent_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

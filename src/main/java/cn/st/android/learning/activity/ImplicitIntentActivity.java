@@ -15,6 +15,8 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
 
+import cn.st.android.learning.util.IntentUtils;
+
 public class ImplicitIntentActivity extends AppCompatActivity implements View.OnClickListener{
     private Button btnDial;
     private Button btnLocal;
@@ -65,7 +67,7 @@ public class ImplicitIntentActivity extends AppCompatActivity implements View.On
             case R.id.btn_dial:{
                 Uri uri=Uri.parse("tel:10086");
                 Intent intent=new Intent(Intent.ACTION_DIAL,uri);
-                if(chkIntentHandlerExist(intent)){
+                if(IntentUtils.chkIntentHandlerExist(intent,this)){
                     startActivity(intent);
                 }
                 break;
@@ -73,7 +75,7 @@ public class ImplicitIntentActivity extends AppCompatActivity implements View.On
             case R.id.btn_local:{
                 Uri uri=Uri.parse("geo:37.422219,-122.08364?z=14");
                 Intent intent=new Intent(Intent.ACTION_VIEW,uri);
-                if(chkIntentHandlerExist(intent)){
+                if(IntentUtils.chkIntentHandlerExist(intent, this)){
                     startActivity(intent);
                 }
                 break;
@@ -81,7 +83,7 @@ public class ImplicitIntentActivity extends AppCompatActivity implements View.On
             case R.id.btn_web:{
                 Uri uri=Uri.parse("https://www.baidu.com");
                 Intent intent=new Intent(Intent.ACTION_VIEW,uri);
-                if(chkIntentHandlerExist(intent)){
+                if(IntentUtils.chkIntentHandlerExist(intent, this)){
                     startActivity(intent);
                 }
 
@@ -94,7 +96,7 @@ public class ImplicitIntentActivity extends AppCompatActivity implements View.On
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"821192673@qq.com"});
                 intent.putExtra(Intent.EXTRA_SUBJECT,"主题");
                 intent.putExtra(Intent.EXTRA_TEXT, "这是一份邮件");
-                if(chkIntentHandlerExist(intent)){
+                if(IntentUtils.chkIntentHandlerExist(intent, this)){
                     startActivity(intent);
                 }
                 break;
@@ -106,7 +108,7 @@ public class ImplicitIntentActivity extends AppCompatActivity implements View.On
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"821192673@qq.com"});
                 intent.putExtra(Intent.EXTRA_SUBJECT,"主题");
                 intent.putExtra(Intent.EXTRA_TEXT, "这是一份邮件");
-                if(chkIntentHandlerExist(intent)){
+                if(IntentUtils.chkIntentHandlerExist(intent, this)){
                     Intent choooseIntent=Intent.createChooser(intent,"选择邮件");
                     startActivity(choooseIntent);
                 }
@@ -115,14 +117,5 @@ public class ImplicitIntentActivity extends AppCompatActivity implements View.On
         }
     }
 
-    /**
-     * 检验是否存在接受该意图的activity
-     * @param intent
-     * @return
-     */
-    private boolean chkIntentHandlerExist(Intent intent){
-        PackageManager packageManager=getPackageManager();
-        List<ResolveInfo> resolveInfoList=packageManager.queryIntentActivities(intent, 0);
-        return CollectionUtils.isNotEmpty(resolveInfoList);
-    }
+
 }
