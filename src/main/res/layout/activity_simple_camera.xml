@@ -26,4 +26,13 @@
         android:layout_height="wrap_content"
         android:onClick="invokeCamera2Save"
         />
+
+    <Button
+        android:id="@+id/btn_save_to_gallery"
+        android:text="@string/btn_save_to_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="invokeCameraAndSave2Gallery"
+        />
+
 </LinearLayout>

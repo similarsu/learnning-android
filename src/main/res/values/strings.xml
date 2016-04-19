@@ -19,4 +19,6 @@
     <string name="btn_go_simple_camera">拍照学习</string>
     <string name="no_found_camera">未发现照相设备</string>
     <string name="btn_simple_camera_save">保存图片</string>
+    <string name="btn_save_to_gallery">保存到相册</string>
+    <string name="success_to_save">保存数据成功</string>
 </resources>

@@ -1,13 +1,10 @@
 package cn.st.android.learning.activity;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +17,6 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 
-import cn.st.android.learning.activity.R;
 import cn.st.android.learning.util.FileUtils;
 import cn.st.android.learning.util.MediaUtils;
 
@@ -28,10 +24,12 @@ public class SimpleCameraActivity extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE_PREVIEW = 1;
     private static final int REQUEST_IMAGE_CAPTURE_SAVE = 2;
+    private static final int REQUEST_IMAGE_CAPTURE_SAVE_2_GALLERY = 3;
+    private File save2GalleryFile;
 
     private ImageView ivImage;
 
-    private static final String TAG="FileUtils";
+    private static final String TAG="SimpleCameraActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +70,14 @@ public class SimpleCameraActivity extends AppCompatActivity {
                     Bundle extras = data.getExtras();
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
                     ivImage.setImageBitmap(imageBitmap);
+                    break;
+                }
+
+                case REQUEST_IMAGE_CAPTURE_SAVE_2_GALLERY:{
+                    Intent mediaScanIntent=new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                    mediaScanIntent.setData(Uri.fromFile(save2GalleryFile));
+                    this.sendBroadcast(mediaScanIntent);
+                    Toast.makeText(this,R.string.success_to_save,Toast.LENGTH_SHORT).show();
                     break;
                 }
 
@@ -126,4 +132,33 @@ public class SimpleCameraActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 保存照片到相册
+     * @param view
+     */
+    public void invokeCameraAndSave2Gallery(View view) {
+        //检查是否有相机
+        if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                // Create the File where the photo should go
+                Toast.makeText(this,"writable : "+MediaUtils.isExternalStorageWritable(),Toast.LENGTH_LONG).show();
+                try {
+                    save2GalleryFile = FileUtils.createImageFile();
+                } catch (IOException ex) {
+                    // Error occurred while creating the File
+                    Log.e(TAG,"create file error",ex);
+                }
+                // Continue only if the File was successfully created
+                if (save2GalleryFile != null) {
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                            Uri.fromFile(save2GalleryFile));
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE_SAVE_2_GALLERY);
+
+                }
+            }
+        }else{
+            Toast.makeText(this,R.string.no_found_camera,Toast.LENGTH_SHORT).show();
+        }
+    }
 }
