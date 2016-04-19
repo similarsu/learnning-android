@@ -15,7 +15,8 @@
     <string name="btn_choose_contact">选择联系人</string>
     <string name="btn_intent_result">带结果的Intent 学习</string>
     <string name="title_activity_simple_camera">SimpleCameraActivity</string>
-    <string name="btn_simple_camera">拍照</string>
+    <string name="btn_simple_camera_preview">获取缩略图</string>
     <string name="btn_go_simple_camera">拍照学习</string>
     <string name="no_found_camera">未发现照相设备</string>
+    <string name="btn_simple_camera_save">保存图片</string>
 </resources>
