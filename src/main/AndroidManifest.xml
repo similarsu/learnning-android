@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.st.android.learning.activity" >
-    <!--使用相机的权限-->
+
+    <!-- 使用相机的权限 -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -41,6 +42,14 @@
         <activity
             android:name=".SimpleCameraActivity"
             android:label="@string/title_activity_simple_camera"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.st.android.learning.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".LearnVideoActivity"
+            android:label="@string/title_activity_learn_vedio"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

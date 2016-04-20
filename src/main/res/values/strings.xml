@@ -21,4 +21,7 @@
     <string name="btn_simple_camera_save">保存图片</string>
     <string name="btn_save_to_gallery">保存到相册</string>
     <string name="success_to_save">保存数据成功</string>
+    <string name="btn_learn_vedio">录像学习</string>
+    <string name="title_activity_learn_vedio">学习录像</string>
+    <string name="btn_video_capture">拍摄</string>
 </resources>
